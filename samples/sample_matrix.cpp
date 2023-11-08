@@ -1,30 +1,61 @@
-п»ї// РќРќР“РЈ, РРРўРњРњ, РљСѓСЂСЃ "РђР»РіРѕСЂРёС‚РјС‹ Рё СЃС‚СЂСѓРєС‚СѓСЂС‹ РґР°РЅРЅС‹С…"
+// ННГУ, ВМК, Курс "Методы программирования-2", С++, ООП
 //
-// Copyright (c) РЎС‹СЃРѕРµРІ Рђ.Р’.
+// sample_matrix.cpp - Copyright (c) Гергель В.П. 07.05.2001
+//   Переработано для Microsoft Visual Studio 2008 Сысоевым А.В. (20.04.2015)
 //
-// РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РјР°С‚СЂРёС†
+// Тестирование верхнетреугольной матрицы
 
 #include <iostream>
-#include "tmatrix.h"
+#include "utmatrix.h"
 //---------------------------------------------------------------------------
 
-void main()
+int main()
 {
-  TDynamicMatrix<int> a(5), b(5), c(5);
-  int i, j;
+    int size, i, j, choice;
+    setlocale(LC_ALL, "Russian");
 
-  setlocale(LC_ALL, "Russian");
-  cout << "РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РєР»Р°СЃСЃ СЂР°Р±РѕС‚С‹ СЃ РјР°С‚СЂРёС†Р°РјРё"
-    << endl;
-  for (i = 0; i < 5; i++)
-    for (j = i; j < 5; j++ )
-    {
-      a[i][j] =  i * 10 + j;
-      b[i][j] = (i * 10 + j) * 100;
+    cout << "Введите размер матриц: ";
+    cin >> size;
+
+    TMatrix<int> a(size), b(size), c(size);
+
+    cout << "Тестирование программ с матрицами" << endl;
+
+    while (true) {
+        cout << "Выберите операцию:" << endl;
+        cout << "1. Задать матрицы" << endl;
+        cout << "2. Сложить матрицы" << endl;
+        cout << "3. Вычесть матрицы" << endl;
+        cout << "4. Вывести матрицы" << endl;
+        cout << "5. Выход" << endl;
+
+        cin >> choice;
+        switch (choice) {
+        case 1:
+            cout << "Введите элементы матрицы a:" << endl;
+            cin >> a;
+            cout << "Введите элементы матрицы b:" << endl;
+            cin >> b;
+            break;
+        case 2:
+            c = a + b;
+            cout << "Результат сложения:" << endl << c << endl;
+            break;
+        case 3:
+            c = a - b;
+            cout << "Результат вычитания:" << endl << c << endl;
+            break;
+        case 4:
+            cout << "Matrix a = " << endl << a << endl;
+            cout << "Matrix b = " << endl << b << endl;
+            break;
+        case 5:
+            return 0;
+        default:
+            cout << "Неверный выбор. Попробуйте еще раз." << endl;
+        }
     }
-  c = a + b;
-  cout << "Matrix a = " << endl << a << endl;
-  cout << "Matrix b = " << endl << b << endl;
-  cout << "Matrix c = a + b" << endl << c << endl;
+    return 0;
+
 }
 //---------------------------------------------------------------------------
